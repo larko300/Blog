@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/comments', 'CommentsController@index');
+
+Route::post('/comments', 'CommentsController@store');
+
+Route::delete('/comments/{id}', 'CommentsController@destroy');
+
+Route::get('/comments/admin', 'CommentsController@admin');
