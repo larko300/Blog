@@ -87,7 +87,7 @@
                             <div class="card-header"><h3>Add comment</h3></div>
 
                             <div class="card-body">
-                                <form action="/comments/store" method="post">
+                                <form action="/comments" method="post">
                                     @csrf
                                     <div class="form-group">
                                         <textarea name="body" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>

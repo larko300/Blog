@@ -51,10 +51,14 @@
                                     <td>{{ $comment->updated_at }}</td>
                                     <td>{{ $comment->body }}</td>
                                     <td>
-                                        <form action="/admin/allow" method="post">
+                                        <form action="/comments/{{ $comment->id }}" method="post">
+                                            @method('PATCH')
+                                            @csrf
                                             <button type="submit" name="allow" class="btn btn-success" value="">Allow</button>
                                         </form>
-                                        <form action="/admin/ban" method="post">
+                                        <form action="/comments/{{ $comment->id }}" method="post">
+                                            @method('PATCH')
+                                            @csrf
                                             <button type="submit" name="ban" class="btn btn-warning" value="">Ban</button>
                                         </form>
                                         <form action="/comments/{{ $comment->id }}" method="post">

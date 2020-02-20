@@ -10,7 +10,7 @@ class CommentsController extends Controller
 {
     public function index()
     {
-        $comments = Comment::all();
+        $comments = Comment::all()->where('status', false);
         return view('comments.index', compact('comments'));
     }
 
@@ -33,5 +33,11 @@ class CommentsController extends Controller
     {
         $comments = Comment::all();
         return view('comments.admin', compact('comments'));
+    }
+
+    public function update(Comment $comment)
+    {
+        request()->has('ban') ? $comment->ban() : $comment->allow();
+        return back();
     }
 }

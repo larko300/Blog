@@ -21,4 +21,6 @@ Route::post('/comments', 'CommentsController@store');
 
 Route::delete('/comments/{id}', 'CommentsController@destroy');
 
+Route::patch('/comments/{comment}', 'CommentsController@update');
+
 Route::get('/comments/admin', 'CommentsController@admin');
