@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class CommentsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index']);
+    }
+
     public function index()
     {
         $comments = Comment::all()->where('status', false);
@@ -16,9 +21,11 @@ class CommentsController extends Controller
 
     public function store()
     {
-        Comment::create(request()->validate([
+        $attributes = request()->validate([
            'body' => ['required', 'min:3']
-        ]));
+        ]);
+        $attributes['owner_id'] = auth()->id();
+        Comment::create($attributes);
         session()->flash('success', 'Comment created!');
         return back();
     }
