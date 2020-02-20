@@ -29,6 +29,11 @@
                         <div class="card-header"><h3>Comment manager</h3></div>
 
                         <div class="card-body">
+                            @if(session('success_admin'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('success_admin') }}
+                                </div>
+                            @endif
                             <table class="table">
                                 <thead>
                                 <tr>

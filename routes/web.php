@@ -19,8 +19,12 @@ Route::get('/comments', 'CommentsController@index');
 
 Route::post('/comments', 'CommentsController@store');
 
-Route::delete('/comments/{id}', 'CommentsController@destroy');
+Route::delete('/comments/{comment}', 'CommentsController@destroy');
 
 Route::patch('/comments/{comment}', 'CommentsController@update');
 
 Route::get('/comments/admin', 'CommentsController@admin');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

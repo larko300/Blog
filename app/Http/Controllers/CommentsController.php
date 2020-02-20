@@ -26,6 +26,7 @@ class CommentsController extends Controller
     public function destroy(Comment $comment)
     {
         $comment->delete();
+        session()->flash('success_admin', 'Success!');
         return back();
     }
 
@@ -38,6 +39,7 @@ class CommentsController extends Controller
     public function update(Comment $comment)
     {
         request()->has('ban') ? $comment->ban() : $comment->allow();
+        session()->flash('success_admin', 'Success!');
         return back();
     }
 }
