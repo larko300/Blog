@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use ResetsPasswords;
 
@@ -33,5 +34,20 @@ class UserProfileController extends Controller
         $user->save();
         return back()->with(['success_profile' => 'Success!']);
     }
+    public function updatePassword(User $user)
+    {
+        request()->validate([
+            'password' => 'required',
+            'new_password' => 'confirmed|max:8|different:password',
+        ]);
+        if (Hash::check(request()->password, $user->password)) {
+            $user->fill([
+                'password' => Hash::make(request()->new_password)
+            ])->save();
+            return back()->with(['success' => 'Password changed!']);
 
+        } else {
+            return back()->with(['error' => 'Password does not match']);
+        }
+    }
 }

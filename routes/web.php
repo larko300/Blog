@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/comments', 'CommentsController@index');
 
 Route::post('/comments', 'CommentsController@store');
@@ -31,6 +27,7 @@ Route::get('/user/{user}/profile', 'UserProfileController@index');
 
 Route::patch('/user/{user}/profile', 'UserProfileController@update');
 
+Route::patch('/user/{user}/profile/password', 'UserProfileController@updatePassword');
+
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-Route::get('/home', 'HomeController@index')->name('home');
