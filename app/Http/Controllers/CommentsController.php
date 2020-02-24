@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
-use App\Project;
 use Illuminate\Http\Request;
 
 class CommentsController extends Controller
@@ -46,7 +45,6 @@ class CommentsController extends Controller
     public function update(Comment $comment)
     {
         request()->has('ban') ? $comment->ban() : $comment->allow();
-        session()->flash('success_admin', 'Success!');
-        return back();
+        return back()->with(['success_admin' => 'Success!']);
     }
 }

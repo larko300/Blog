@@ -27,6 +27,10 @@ Route::get('/comments/admin', 'CommentsController@admin');
 
 Auth::routes();
 
+Route::get('/user/{user}/profile', 'UserProfileController@index');
+
+Route::patch('/user/{user}/profile', 'UserProfileController@update');
+
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
