@@ -20,6 +20,7 @@
                                 <tr>
                                     <th>Icon</th>
                                     <th>Name</th>
+                                    <th>Id</th>
                                     <th>Date</th>
                                     <th>Comment</th>
                                     <th>Action</th>
@@ -30,28 +31,30 @@
                                 <tbody>
                                 <tr>
                                     <td>
-                                        <img src="img/no-user.jpg" alt="" class="img-fluid" width="64" height="64">
+                                        <img src="@if($comment->user['avatar']){{ $comment->user['avatar'] }} @else /icon/no-user.jpg @endif" alt="" class="img-fluid" width="64" height="64">
                                     </td>
-                                    <td>Name</td>
+                                    <td>{{ $comment->user['name'] }}</td>
                                     <td>{{ $comment->id }}</td>
                                     <td>{{ $comment->updated_at }}</td>
                                     <td>{{ $comment->body }}</td>
                                     <td>
-                                        <form action="/comments/{{ $comment->id }}" method="post">
-                                            @method('PATCH')
-                                            @csrf
-                                            <button type="submit" name="allow" class="btn btn-success" value="">Allow</button>
-                                        </form>
-                                        <form action="/comments/{{ $comment->id }}" method="post">
-                                            @method('PATCH')
-                                            @csrf
-                                            <button type="submit" name="ban" class="btn btn-warning" value="">Ban</button>
-                                        </form>
-                                        <form action="/comments/{{ $comment->id }}" method="post">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button type="submit" name="delete" class="btn btn-danger" value="">Delete</button>
-                                        </form>
+                                        <div class="row">
+                                            <form action="/comments/{{ $comment->id }}" method="post">
+                                                @method('PATCH')
+                                                @csrf
+                                                <button type="submit" name="allow" class="btn btn-success" value="">Allow</button>
+                                            </form>
+                                            <form action="/comments/{{ $comment->id }}" method="post">
+                                                @method('PATCH')
+                                                @csrf
+                                                <button type="submit" name="ban" class="btn btn-warning" value="">Ban</button>
+                                            </form>
+                                            <form action="/comments/{{ $comment->id }}" method="post">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button type="submit" name="delete" class="btn btn-danger" value="">Delete</button>
+                                            </form>
+                                        </div>
                                     </td>
 
                                 </tr>
